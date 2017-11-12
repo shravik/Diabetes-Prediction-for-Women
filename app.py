@@ -89,10 +89,13 @@ def foodItem():
     print("entered food Item")
     newValue = request.form['foodValue']
     print(newValue)
-    print("======0eiqw8iaosjmk")
-    database = xlrd.open_workbook('C:\\Users\\salon\\Desktop\\Final\\Foods.xlsx')
+
+
+    file = 'C:\\Users\\salon\\Desktop\\Final\\Foods.xlsx'
     wb = openpyxl.load_workbook(filename=file)
-    ws = wb.get_sheet_by_name('diabetes')
+    ws = wb.get_sheet_by_name('Sheet1')
+
+
     sugar = ''
 
     print("11111")
@@ -104,7 +107,6 @@ def foodItem():
             sugar = ws.cell(row=i, column=3).value
     sugar = 2500-sugar
     print("22222222222")
-    msg1= 'You need to have ' + sugar + ' for the day'
     msg = ''
     if sugar < 270 and sugar >= 135:
         msg = "No sugar for you! You are done for today"
@@ -117,7 +119,7 @@ def foodItem():
 
     print("left food item")
 
-    return render_template('final.html', msg = msg, msg1 = msg1 )
+    return render_template('final.html', msg = msg, sugar = sugar)
 
 
 
